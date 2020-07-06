@@ -1,0 +1,21 @@
+{
+    "name": "min-radish/php-tim",
+    "description": "PHP 调用腾讯TIM即时通讯",
+    "keywords": ["PHP", "Tencent", "TIM"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Radish",
+            "email": "1004622952@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+    },
+    "autoload": {
+        "psr-4": {
+          "Radish\\Tim\\": "src/"
+        }
+    }
+}
