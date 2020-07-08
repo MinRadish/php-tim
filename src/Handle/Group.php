@@ -9,7 +9,7 @@ namespace Radish\Tim\Handle;
 
 use Radish\Tim\Tim;
 
-class Group extends \Radish\Tim\RequestBusinessInterface
+class Group implements \Radish\Tim\RequestBusinessInterface
 {
     use \Radish\Tim\Traits\RequestTrait;
 
@@ -35,6 +35,16 @@ class Group extends \Radish\Tim\RequestBusinessInterface
     }
 
     /**
+     * 修改群基础资料
+     * @param  array  $params 请求参数
+     * @return array|mixed    响应结果
+     */
+    public function update(array $params)
+    {
+        return $this->commnoRequest('modify_group_base_info', $params);
+    }
+
+    /**
      * 用户相关接口地址
      * @param  string $key 接口
      * @return string      接口地址
@@ -43,6 +53,7 @@ class Group extends \Radish\Tim\RequestBusinessInterface
     {
         $map = [
             'create_group' => 'v4/group_open_http_svc/create_group',
+            'modify_group_base_info' => 'v4/group_open_http_svc/modify_group_base_info',
         ];
         return $this->tim->getUrl() . $map[$key];
     }
