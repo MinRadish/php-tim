@@ -74,3 +74,30 @@ dum($tim->getUser()->queryState($params));
 **参数说明**
 
 - see [查询在线状态](https://cloud.tencent.com/document/product/269/2566)
+
+### 设置资料
+
+- see [设置资料](https://cloud.tencent.com/document/product/269/1640)
+
+**示例代码**
+
+~~~
+$tim = new \common\WeChat\Tim;
+$params = [
+    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'params' => [
+        'From_Account' => 'id',
+        'ProfileItem' => [
+            [
+                'Tag' => 'Tag_Profile_IM_Nick',
+                'Value' => 'nickname',
+            ],
+            [
+                'Tag' => 'Tag_Profile_IM_Image',
+                'Value' => 'headimgurl',
+            ],
+        ],
+    ],
+];
+$result = $tim->getUser()->setInfo($params);
+~~~

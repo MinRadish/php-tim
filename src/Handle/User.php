@@ -62,6 +62,16 @@ class User implements \Radish\Tim\RequestBusinessInterface
     }
 
     /**
+     * 设置资料
+     * @param  array  $params 请求参数
+     * @return array|mixed    响应结果
+     */
+    public function setInfo(array $params)
+    {
+        return $this->commnoRequest('portrait_set', $params);
+    }
+
+    /**
      * 用户相关接口地址
      * @param  string $key 接口
      * @return string      接口地址
@@ -72,6 +82,7 @@ class User implements \Radish\Tim\RequestBusinessInterface
             'account_import' => 'v4/im_open_login_svc/account_import',
             'account_check' => 'v4/im_open_login_svc/account_check',
             'querystate' => 'v4/openim/querystate',
+            'portrait_set' => 'v4/profile/portrait_set',
         ];
         return $this->url . $map[$key];
     }

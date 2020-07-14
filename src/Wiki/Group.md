@@ -39,32 +39,67 @@ $tim = new Tim;
 $params = [
     'usersig' => $tim->getUserSig()->genSig('Radish'),
     'params' => [
-        'GroupId' => $id,
+        'GroupId' => 'GroupId', //必须
+        'Name' => 'Name',
+        'Introduction' => 'Introduction',
+        'Notification' => 'Notification',
+        'FaceUrl' => 'FaceUrl',
     ],
 ];
-$data = $this->getData();
-foreach ($data as $key => $val) {
-    switch ($key) {
-        case 'name':
-            $params['params']['Name'] = $val;
-            break;
-        
-        case 'synopsis':
-            $params['params']['Introduction'] = $val;
-            break;
-        
-        case 'notice':
-            $params['params']['Notification'] = $val;
-            break;
-        
-        case 'face':
-            $params['params']['FaceUrl'] = $val;
-            break;
-        
-        default:
-            // throw new \Exception("nothing to do", -1);
-            break;
-    }
-}
 $result = $tim->getGroup()->update($params);
+~~~
+
+### 增加群成员
+
+**示例代码**
+
+~~~
+$tim = new Tim;
+$params = [
+    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'params' => [
+        'GroupId' => 'id',
+        'Silence' => 1,
+        'MemberList' => [
+            ['Member_Account' => 'id'],
+        ],
+    ],
+];
+$result = $tim->getGroup()->join($params);
+~~~
+
+### 踢出群成员
+
+**示例代码**
+
+~~~
+$tim = new Tim;
+$params = [
+    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'params' => [
+        'GroupId' => 'group_id',
+        'Silence' => 1,
+        'MemberToDel_Account' => [
+            'user_id',
+        ],
+    ],
+];
+$result = $tim->getGroup()->quit($params);
+~~~
+
+### 修改群成员信息
+
+**示例代码**
+
+~~~
+$tim = new Tim;
+$params = [
+    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'params' => [
+        'GroupId' => 'group_id',
+        'Member_Account' => 'user_id',
+        'NameCard' => 'group_nickname',
+    ],
+];
+$result = $tim->getGroup()->updateUser($params);
 ~~~
