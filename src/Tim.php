@@ -48,6 +48,12 @@ abstract class Tim
      */
     protected $group;
 
+    /**
+     * App 管理员帐号
+     * @var string
+     */
+    protected $identifier = 'administrator';
+
     public function __construct(array $options)
     {
         foreach ($options as $key => $val) {
@@ -118,5 +124,14 @@ abstract class Tim
     public function getUrl() : string
     {
         return $this->url;
+    }
+
+    /**
+     * 获取app管理员账号
+     * @return string App管理员账号
+     */
+    public function getIdentifier() : string
+    {
+        return $this->identifier;
     }
 }

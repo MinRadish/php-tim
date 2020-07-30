@@ -82,7 +82,7 @@ trait RequestTrait
         $random = (float)$usec + (float)$sec;
         $params = array_merge([
             'sdkappid' => $this->tim->getAppId(),
-            'identifier' => 'Radish',
+            'identifier' => $this->tim->getIdentifier(),
             'random' => substr($random * 10000, -9),
             'contenttype' => 'json',
         ], $params);
