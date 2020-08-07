@@ -54,6 +54,12 @@ abstract class Tim
      */
     protected $identifier = 'administrator';
 
+    /**
+     * 对象数组
+     * @var array
+     */
+    protected $objectList = [];
+
     public function __construct(array $options)
     {
         foreach ($options as $key => $val) {
@@ -133,5 +139,25 @@ abstract class Tim
     public function getIdentifier() : string
     {
         return $this->identifier;
+    }
+
+    /**
+     * 获取应用对象魔术方法
+     * @param  string $field 应用类名
+     * @return Object        应用类对象
+     */
+    public function __call($field, $params)
+    {
+        $field = ltrim($field, 'get');
+        try {
+            if (!isset($this->objectList[$field])) {
+                $classNamespace = '\\Radish\\Tim\\Handle\\' . $field;
+                $this->objectList[$field] = new $classNamespace($this, $params);
+            }
+        } catch (\Exception $e) {
+            throw new Exception("无效的应用类:" . $field, -1);
+        }
+
+        return $this->objectList[$field];
     }
 }

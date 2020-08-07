@@ -9,7 +9,7 @@
 ~~~
 $tim = new Tim;
 $params = [
-    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'usersig' => $tim->getUserSig()->genSig($tim->getIdentifier()),
     'params' => [
         'Owner_Account' => (string) $this->getAttribute('make_user_id'),
         'Type' => 'Public',
@@ -37,7 +37,7 @@ $result = $tim->getGroup()->create($params);
 ~~~
 $tim = new Tim;
 $params = [
-    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'usersig' => $tim->getUserSig()->genSig($tim->getIdentifier()),
     'params' => [
         'GroupId' => 'GroupId', //必须
         'Name' => 'Name',
@@ -56,7 +56,7 @@ $result = $tim->getGroup()->update($params);
 ~~~
 $tim = new Tim;
 $params = [
-    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'usersig' => $tim->getUserSig()->genSig($tim->getIdentifier()),
     'params' => [
         'GroupId' => 'id',
         'Silence' => 1,
@@ -75,7 +75,7 @@ $result = $tim->getGroup()->join($params);
 ~~~
 $tim = new Tim;
 $params = [
-    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'usersig' => $tim->getUserSig()->genSig($tim->getIdentifier()),
     'params' => [
         'GroupId' => 'group_id',
         'Silence' => 1,
@@ -94,7 +94,7 @@ $result = $tim->getGroup()->quit($params);
 ~~~
 $tim = new Tim;
 $params = [
-    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'usersig' => $tim->getUserSig()->genSig($tim->getIdentifier()),
     'params' => [
         'GroupId' => 'group_id',
         'Member_Account' => 'user_id',

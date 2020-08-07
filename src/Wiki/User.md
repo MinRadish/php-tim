@@ -9,7 +9,7 @@
 ~~~
 $tim = new Tim;
 $params = [
-    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'usersig' => $tim->getUserSig()->genSig($tim->getIdentifier()),
     'params' => [
         'Identifier' => (string)$this->getAttribute('id'),
         'Nick' => $this->getAttribute('wechat.nickname'),
@@ -41,7 +41,7 @@ $result = $tim->getUser()->import($params);
 ~~~
 $tim = new Tim;
 $params = [
-    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'usersig' => $tim->getUserSig()->genSig($tim->getIdentifier()),
     'params' => [
         'CheckItem' => [
             ['UserID' => '1']
@@ -62,7 +62,7 @@ dum($tim->getUser()->check($params));
 ~~~
 $tim = new Tim;
 $params = [
-    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'usersig' => $tim->getUserSig()->genSig($tim->getIdentifier()),
     'params' => [
         'IsNeedDetail' => 1, //选填,是否需要返回详细的登录平台信息。0表示不需要，1表示需要
         'To_Account' => ['1']
@@ -84,7 +84,7 @@ dum($tim->getUser()->queryState($params));
 ~~~
 $tim = new \common\WeChat\Tim;
 $params = [
-    'usersig' => $tim->getUserSig()->genSig('Radish'),
+    'usersig' => $tim->getUserSig()->genSig($tim->getIdentifier()),
     'params' => [
         'From_Account' => 'id',
         'ProfileItem' => [
