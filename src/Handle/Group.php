@@ -75,6 +75,16 @@ class Group implements \Radish\Tim\RequestBusinessInterface
     }
 
     /**
+     * 解散群聊
+     * @param  array  $params 请求参数
+     * @return array|mixed    响应结果
+     */
+    public function disband(array $params)
+    {
+        return $this->commnoRequest('destroy_group', $params);
+    }
+
+    /**
      * 用户相关接口地址
      * @param  string $key 接口
      * @return string      接口地址
@@ -87,6 +97,7 @@ class Group implements \Radish\Tim\RequestBusinessInterface
             'add_group_member' => 'v4/group_open_http_svc/add_group_member',
             'delete_group_member' => 'v4/group_open_http_svc/delete_group_member',
             'modify_group_member_info' => 'v4/group_open_http_svc/modify_group_member_info',
+            'destroy_group' => 'v4/group_open_http_svc/destroy_group',
         ];
         return $this->tim->getUrl() . $map[$key];
     }

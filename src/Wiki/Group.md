@@ -103,3 +103,18 @@ $params = [
 ];
 $result = $tim->getGroup()->updateUser($params);
 ~~~
+
+### 解散群聊
+
+**示例代码**
+
+~~~
+$tim = new Tim;
+$params = [
+    'usersig' => $tim->getUserSig()->genSig($tim->getIdentifier()),
+    'params' => [
+        'GroupId' => 'group_id',
+    ],
+];
+$result = $tim->getGroup()->disband($params);
+~~~
